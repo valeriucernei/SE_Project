@@ -27,6 +27,45 @@ class BaseDao {
         }
     }
 
+    /**
+   * Insert function into database
+   * @param  $table  Table name
+   * @param  $entity User Data
+   * @return $entity        Return user Data with ID
+   */
+    protected function insert($table, $entity){
+        $query = "INSERT INTO ${table}"."(";
+        foreach($entity as $name => $value){
+            $query .= $name.", ";
+        }
 
+        $query = substr($query, 0, -2);
+        $query .= ") VALUES (";
+
+        foreach($entity as $name => $value){
+            $query .= ":".$name.", ";
+        }
+
+        $query = substr($query, 0, -2);
+        $query .= ")";
+
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute($entity);
+        $entity['id'] = $this->connection->lastInsertId();
+
+        return $entity;
+    }
+
+    /**
+     * Method to delete object from the table.
+     * @param  [type] $table  [deion]
+     * @param  [type] $entity [deion]
+     * @return [type]         [deion]
+     */
+    protected function remove($table, $id){
+        $stmt = $this->connection->prepare("DELETE FROM ${table} WHERE id = :id");
+        $result = $stmt->execute(["id" => $id]);
+        print_r($result); die;
+    }
 
 }
