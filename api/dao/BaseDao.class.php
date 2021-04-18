@@ -68,4 +68,27 @@ class BaseDao {
         print_r($result); die;
     }
 
+    /**
+   * Return array with all data regardling query
+   * @param  $query  SQL Query
+   * @param   $params Parameters inside a Query
+   * @return [type]         Return array with all data regardling query
+   */
+    protected function query($query, $params){
+        $stmt = $this->connection->prepare($query);
+        $stmt->execute($params);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    /**
+   * Return unique array regardling query
+   * @param  [type] $query  SQL Query
+   * @param  [type] $params Parameters inside a Query
+   * @return [type]         Return unique array regardling query
+   */
+    protected function query_unique($query, $params){
+        $results = $this->query($query, $params);
+        return reset($results);
+    }
+
 }
