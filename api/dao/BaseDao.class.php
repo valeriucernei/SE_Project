@@ -27,6 +27,28 @@ class BaseDao {
         }
     }
 
+    public function beginTransaction(){
+        $response = $this->connection->beginTransaction();
+    }
+
+    public function commit(){
+        $this->connection->commit();
+    }
+
+    public function rollBack(){
+        $response = $this->connection->rollBack();
+    }
+
+    public function parse_order($order){
+      switch(substr($order, 0, 1)){
+        case '-' : $order_direction = "ASC"; break;
+        case '+' : $order_direction = "DESC"; break;
+        default: throw new Exception("Invalid order character. Use either + or -"); break;
+      }
+      $order_column = substr($order, 1);
+      return [$order_column, $order_direction];
+    }
+
     /**
    * Insert function into database
    * @param  $table  Table name
@@ -58,14 +80,38 @@ class BaseDao {
 
     /**
      * Method to delete object from the table.
-     * @param  [type] $table  [deion]
-     * @param  [type] $entity [deion]
-     * @return [type]         [deion]
+     * @param  [type] $table  [description]
+     * @param  [type] $entity [description]
+     * @return [type]         [description]
      */
     protected function remove($table, $id){
         $stmt = $this->connection->prepare("DELETE FROM ${table} WHERE id = :id");
         $result = $stmt->execute(["id" => $id]);
         print_r($result); die;
+    }
+
+    /**
+   * Update query in database
+   * @param  string $table     Table name
+   * @param   $id        Search index (user ID, email...)
+   * @param   $entity    User data
+   * @param  string $id_column Optional: Column name (default= 'id')
+   * @example update("users", $email, $user, "email");
+   */
+    protected function execute_update($table, $id, $entity, $id_column = "id"){
+        $query = "UPDATE ${table} SET ";
+
+        foreach($entity as $name => $value){
+          $query .= $name." = :".$name.", ";
+        }
+
+        $query = substr($query, 0, -2);
+        $query .= " WHERE ${id_column} = :id";
+
+        $stmt = $this->connection->prepare($query);
+
+        $entity['id'] = $id;
+        $stmt->execute($entity);
     }
 
     /**
@@ -101,28 +147,23 @@ class BaseDao {
     }
 
     /**
-    * Update existing data  in class table
-    * @param   $id     ID for indexation (Ad ID, user ID...)
-    * @param   $entity Array of data
-    */
-   public function update($id, $entity){
-       $this->execute_update($this->table, $id, $entity);
-   }
+     * Delete a row from data base
+     * @param  [type] $id [description]
+     * @return [type]     [description]
+     */
+    public function delete($id){
+        return $this->remove($this->table, $id);
+    }
 
-   /**
-    * Delete a row from data base
-    * @param  [type] $id [description]
-    * @return [type]     [description]
-    */
-   public function delete($id){
-       return $this->remove($this->table, $id);
-   }
+    /**
+     * Update existing data  in class table
+     * @param   $id     ID for indexation (Ad ID, user ID...)
+     * @param   $entity Array of data
+     */
+    public function update($id, $entity){
+        $this->execute_update($this->table, $id, $entity);
+    }
 
-   /**
-    * Get all info from a Table
-    * @param  [type] $id [description]
-    * @return [type]     [description]
-    */
     public function get_all($offset, $limit, $order){
         list($order_column, $order_direction) = self::parse_order($order);
 
@@ -140,5 +181,4 @@ class BaseDao {
         return $this->query_unique("SELECT * FROM ".$this->table.
                                   " WHERE id = :id", ["id" => $id]);
     }
-
 }
