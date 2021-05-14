@@ -6,11 +6,10 @@
 *     @OA\Response(response="200", description="Fetch all available car brands")
 * )
 */
-Flight::route('GET /cars/brands', function(){
+Flight::route('GET /cars/brands', function()
+{
     Flight::json(Flight::carsservice()->get_car_brands());
 });
-
-
 
 /**
 * @OA\Get(path="/cars/models/{id}", tags={"cars"}, description="Lists all car models of a specific brand (Ex. Sharan, Golf, Polo)",
@@ -18,6 +17,7 @@ Flight::route('GET /cars/brands', function(){
 *     @OA\Response(response="200", description="Fetch all car models of a specific brand")
 * )
 */
-Flight::route('GET /cars/models/@id', function($id){
+Flight::route('GET /cars/models/@id', function($id)
+{
     Flight::json(Flight::carsservice()->get_car_models($id));
 });

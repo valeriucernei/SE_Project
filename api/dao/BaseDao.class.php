@@ -7,12 +7,13 @@ require_once dirname(__FILE__)."/../config.php";
 * All other DAO classes should inherit this class.
 *
 */
-class BaseDao {
-
+class BaseDao
+{
     protected $connection;
     private $table;
 
-    public function __construct($table){
+    public function __construct($table)
+    {
         $this->table = $table;
         try {
             $this->connection = new PDO("mysql:host=".Config::DB_HOST().
@@ -27,26 +28,31 @@ class BaseDao {
         }
     }
 
-    public function beginTransaction(){
+    public function beginTransaction()
+    {
         $response = $this->connection->beginTransaction();
     }
 
-    public function commit(){
+    public function commit()
+    {
         $this->connection->commit();
     }
 
-    public function rollBack(){
+    public function rollBack()
+    {
         $response = $this->connection->rollBack();
     }
 
-    public function parse_order($order){
-      switch(substr($order, 0, 1)){
-        case '-' : $order_direction = "ASC"; break;
-        case '+' : $order_direction = "DESC"; break;
-        default: throw new Exception("Invalid order character. Use either + or -"); break;
-      }
-      $order_column = substr($order, 1);
-      return [$order_column, $order_direction];
+    public function parse_order($order)
+    {
+        switch(substr($order, 0, 1))
+        {
+            case '-' : $order_direction = "ASC"; break;
+            case '+' : $order_direction = "DESC"; break;
+            default: throw new Exception("Invalid order character. Use either + or -"); break;
+        }
+        $order_column = substr($order, 1);
+        return [$order_column, $order_direction];
     }
 
     /**
@@ -55,16 +61,19 @@ class BaseDao {
    * @param  $entity User Data
    * @return $entity        Return user Data with ID
    */
-    protected function insert($table, $entity){
+    protected function insert($table, $entity)
+    {
         $query = "INSERT INTO ${table}"."(";
-        foreach($entity as $name => $value){
+        foreach($entity as $name => $value)
+        {
             $query .= $name.", ";
         }
 
         $query = substr($query, 0, -2);
         $query .= ") VALUES (";
 
-        foreach($entity as $name => $value){
+        foreach($entity as $name => $value)
+        {
             $query .= ":".$name.", ";
         }
 
@@ -98,10 +107,12 @@ class BaseDao {
    * @param  string $id_column Optional: Column name (default= 'id')
    * @example update("users", $email, $user, "email");
    */
-    protected function execute_update($table, $id, $entity, $id_column = "id"){
+    protected function execute_update($table, $id, $entity, $id_column = "id")
+    {
         $query = "UPDATE ${table} SET ";
 
-        foreach($entity as $name => $value){
+        foreach($entity as $name => $value)
+        {
           $query .= $name." = :".$name.", ";
         }
 
@@ -120,7 +131,8 @@ class BaseDao {
    * @param   $params Parameters inside a Query
    * @return [type]         Return array with all data regardling query
    */
-    protected function query($query, $params){
+    protected function query($query, $params)
+    {
         $stmt = $this->connection->prepare($query);
         $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -132,7 +144,8 @@ class BaseDao {
    * @param  [type] $params Parameters inside a Query
    * @return [type]         Return unique array regardling query
    */
-    protected function query_unique($query, $params){
+    protected function query_unique($query, $params)
+    {
         $results = $this->query($query, $params);
         return reset($results);
     }
@@ -142,7 +155,8 @@ class BaseDao {
      * @param  $entity Array of data
      * @return [type]      Return entry ID
      */
-    public function add($entity){
+    public function add($entity)
+    {
         return $this->insert($this->table, $entity);
     }
 
@@ -151,7 +165,8 @@ class BaseDao {
      * @param  [type] $id [description]
      * @return [type]     [description]
      */
-    public function delete($id){
+    public function delete($id)
+    {
         return $this->remove($this->table, $id);
     }
 
@@ -160,11 +175,13 @@ class BaseDao {
      * @param   $id     ID for indexation (Ad ID, user ID...)
      * @param   $entity Array of data
      */
-    public function update($id, $entity){
+    public function update($id, $entity)
+    {
         $this->execute_update($this->table, $id, $entity);
     }
 
-    public function get_all($offset, $limit, $order){
+    public function get_all($offset, $limit, $order)
+    {
         list($order_column, $order_direction) = self::parse_order($order);
 
         return $this->query("SELECT * FROM ".$this->table."
@@ -177,7 +194,8 @@ class BaseDao {
      * @param  [type] $id [description]
      * @return [type]     [description]
      */
-    public function get_by_id($id){
+    public function get_by_id($id)
+    {
         return $this->query_unique("SELECT * FROM ".$this->table.
                                   " WHERE id = :id", ["id" => $id]);
     }

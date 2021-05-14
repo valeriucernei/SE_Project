@@ -2,10 +2,11 @@
 require_once dirname(__FILE__).'/../config.php';
 require_once dirname(__FILE__).'/../../vendor/autoload.php';
 
-class SMTPClient{
+class SMTPClient
+{
     private $mailer;
-
-    public function __construct(){
+    public function __construct()
+    {
         $transport = (new Swift_SmtpTransport(Config::SMTP_HOST(),
                                               Config::SMTP_PORT(), 'tls'))
                                               ->setUsername(Config::SMTP_USER())
@@ -14,18 +15,20 @@ class SMTPClient{
         $this->mailer = new Swift_Mailer($transport);
     }
 
-    public function send_register_user_token($user){
+    public function send_register_user_token($user)
+    {
         $message = (new Swift_Message('CarMarket | Confirm Registration'))
                     ->setFrom([
                         'noreply@car-market.live' => 'CarMarket No Reply Mail'])
                     ->setTo([$user['email']])
                     ->setBody(
-                        'Confirmation link: http://localhost/carmarket/api/confirm/'.
-                        $user['token']);
+                        'Confirmation link: http://localhost/carmarket/?confirmation='.
+                        $user['token']."#confirm");
         $this->mailer->send($message);
     }
 
-    public function send_confirmed_email($user){
+    public function send_confirmed_email($user)
+    {
         $message = (new Swift_Message('CarMarket | Confirm Registration'))
                     ->setFrom([
                         'noreply@car-market.live' => 'CarMarket No Reply Mail'])
@@ -34,11 +37,13 @@ class SMTPClient{
         $this->mailer->send($message);
     }
 
-    public function send_recovery_email($user){
+    public function send_recovery_email($user)
+    {
         $message = (new Swift_Message('CarMarket | Reset Password Link'))
             ->setFrom(['noreply@car-market.live' => 'CarMarket No Reply Mail'])
             ->setTo([$user['email']])
-            ->setBody('Recovery token: '.$user['token']);
+            ->setBody('Recovery link: http://localhost/carmarket/?token='.$user['token']."#reset");
         $this->mailer->send($message);
     }
+
 }

@@ -7,7 +7,8 @@
 *     @OA\Response(response="200", description="Photo ID")
 * )
 */
-Flight::route('GET /photos/@token', function($token){
+Flight::route('GET /photos/@token', function($token)
+{
     Flight::json(Flight::photosservice()->get_photo_id($token));
 });
 
@@ -17,6 +18,7 @@ Flight::route('GET /photos/@token', function($token){
 *     @OA\Response(response="200", description="Photo ID")
 * )
 */
-Flight::route('GET /photos/ad/@id', function($id){
+Flight::route('GET /photos/ad/@id', function($id)
+{
     Flight::json(Flight::photosservice()->get_ads_photos($id));
 });
