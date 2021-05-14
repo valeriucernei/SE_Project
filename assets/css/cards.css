@@ -1,0 +1,39 @@
+.card {
+  margin-bottom: 16px;
+  text-decoration: none;
+  text-align: left;
+}
+
+.card-body {
+  color: black;
+  padding: 0.4rem;
+}
+
+.card-body h6 {
+  font-weight: 600;
+}
+
+.card-body ul {
+  min-height: 75px;
+}
+
+@media only screen and (max-width: 450px) {
+  .card-body ul {
+    min-height: 120px;
+  }
+
+}
+
+.card-body ul.atributes {
+  font-size: 14px;
+  color: rgb(118,118,118);
+  margin-bottom: 3px;
+}
+
+.card-body p.price {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: rgb(223,5,5);
+  margin-bottom: 0;
+}

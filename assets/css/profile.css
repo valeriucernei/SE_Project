@@ -1,0 +1,51 @@
+#profile-box .card-body {
+  padding: 0;
+}
+
+#profile-box li:hover {
+  background-color: rgb(247,247,247);
+}
+
+#profile-box .btn {
+  width: 100%;
+}
+
+#profile-box .btn.active {
+  background-color: rgb(255,237,237);
+}
+
+#profile-box div.photo, h5, p {
+  text-align: center;
+}
+
+#profile-box .photo i {
+  font-size: 1000%;
+  color: rgb(177,177,177);
+}
+
+#profile-box .admin {
+  border-top-style: solid;
+  border-top-color: rgb(255,0,0);
+  border-bottom-style: solid;
+  border-bottom-color: rgb(255,0,0);
+  background-color: rgb(255,219,199);
+}
+
+#profile-info li {
+  color: rgb(162,162,162);
+  font-size: 14px;
+}
+
+#profile-info li span {
+  color: rgb(0,0,0);
+  font-weight: bold;
+}
+
+#profile-info li span.active {
+  color: rgb(0,255,41);
+}
+
+#profile-info .form-label {
+  font-weight: bold;
+}
+

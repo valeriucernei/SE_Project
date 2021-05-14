@@ -1,0 +1,21 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-8 col-lg-6 col-xl-6 col-xxl-4 offset-md-2 offset-lg-3 offset-xl-3 offset-xxl-4">
+            <div class="card">
+                <div class="card-body" style="padding: 8px 16px;">
+                    <h4 class="text-center">Forgot password?</h4>
+                    <form onsubmit="doForgot(); return false;" method="post"><label class="form-label" for="forgotinput">Email Address</label><input class="form-control mb-3" type="email" id="forgotinput" maxlength="64" required="" placeholder="Email Address">
+                        <div id="forgotSuccess" class="alert alert-success" role="alert"><span>Check your <strong>email</strong> for<strong> password reset link</strong>.</span></div>
+                        <div id="forgotAlert" class="alert alert-danger" role="alert"><span>There is <strong>no user</strong> registered with such <strong>username</strong> or <strong>email address</strong>.</span></div>
+                        <div class="container" style="padding: 0;">
+                            <div class="row">
+                                <div class="col-6 col-md-6"><button class="btn btn-link btn-lg" type="button" data-bs-dismiss="modal">Back to Main</button></div>
+                                <div class="col-6 col-md-6 text-end"><button id="resetButton" class="btn btn-primary btn-lg" type="submit">Reset password</button></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

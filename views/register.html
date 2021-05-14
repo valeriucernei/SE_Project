@@ -1,0 +1,58 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-10 col-lg-8 col-xl-6 offset-md-1 offset-lg-2 offset-xl-3">
+            <div class="card">
+                <div class="card-body" style="padding: 8px 16px;">
+                    <h4 class="text-center">Registration Form</h4>
+                    <form id="registerForm" method="post" onsubmit="doRegister(); return false;">
+                        <div class="container mb-3" style="padding: 0;">
+                            <div class="row">
+                                <div class="col-md-6"><label class="form-label" for="regfname">First name<span style="color: red;">*</span></label><input name="fname" class="form-control" type="text" id="regfname" required="" minlength="3" maxlength="24"></div>
+                                <div class="col-md-6"><label class="form-label" for="reglname">Last name</label><input name="lname" class="form-control" type="text" id="reglname" maxlength="24"></div>
+                            </div>
+                        </div>
+                        <div class="container mb-3" style="padding: 0;">
+                            <div class="row">
+                                <div class="col-md-6"><label class="form-label" for="regusername">Username<span style="color: red;">*</span></label><input name="username" class="form-control" type="text" id="regusername" required="" minlength="6" maxlength="24"></div>
+                                <div class="col-md-6"><label class="form-label" for="regemail">Email address<span style="color: red;">*</span></label><input name="email" class="form-control" type="email" id="regemail" required="" minlength="5" maxlength="64"></div>
+                                <div class="col-xxl-12">
+                                    <div class="alert alert-danger mt-3 mb-0" role="alert" id="regalert" style="display:none;"></div>
+                                </div>
+                            </div>
+                        </div><label class="form-label" for="regphone">Phone number<span style="color: red;">*</span></label>
+                        <div class="input-group mb-3"><span class="input-group-text">+</span><input name="phone" class="form-control" type="tel" id="regphone" required="" maxlength="15" minlength="7"></div>
+                        <div class="container mb-3" style="padding: 0;">
+                            <div class="row">
+                                <div class="col-md-6"><label class="form-label" for="regpass1">Password<span style="color: red;">*</span></label><input class="form-control mb-3" type="password" id="regpass1" name="pass" required="" minlength="6" maxlength="32"></div>
+                                <div class="col-md-6"><label class="form-label" for="regpass2">Confirm password<span style="color: red;">*</span></label><input class="form-control mb-3" type="password" id="regpass2" required="" minlength="6" maxlength="32"></div>
+                                <div class="col-xxl-12" id="regpassnotmatch" style="display:none">
+                                    <div class="alert alert-danger" role="alert"><span>Passwords <strong>DO</strong>&nbsp;<strong>NOT </strong>match.<br></span></div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck" required=""><label class="form-check-label" for="formCheck">I agree to the license terms<span style="color: red;">*</span></label></div>
+                                </div>
+                                <div class="col-xxl-12">
+                                    <p class="text-start mb-0"><span style="color: red;">*</span>These fields are requried.</p>
+                                </div>
+                                <div class="col text-end"><button id="regButton" class="btn btn-primary btn-lg" type="submit">Register</button></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" role="dialog" tabindex="-1" id="regConfirmModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><strong>Confirm email address</strong></h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-success" role="alert"><span>A <strong>confirmation token</strong> has been sent to <strong>your email address</strong>. Please check your inbox.<br></span></div>
+                <div class="text-center"><a href="#main" class="btn btn-primary btn-lg" onclick="$('#regConfirmModal').modal('hide')">Go to Main</a></div>
+            </div>
+        </div>
+    </div>
+</div>

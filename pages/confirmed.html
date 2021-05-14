@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CarMarket</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/img/180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/512.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/Image-Tab-Gallery-Horizontal.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/login-register.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/pagination.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Search-Form.css">
+    <link rel="stylesheet" href="assets/css/profile-info.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
+    <link rel="stylesheet" href="assets/css/publications.css">
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="padding: 8px;border-bottom-style: none;">
+        <div class="container"><a class="navbar-brand logo" href="#" style="font-family: Poppins, sans-serif;font-size: 32px;">carmarket</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1"><span class="ms-auto navbar-text" style="min-width: 200px;"><button class="btn btn-light btn-lg" type="button" style="font-size: 16px;"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" class="bi bi-person-circle" style="font-size: 22px;">
+                            <path d="M13.468 12.37C12.758 11.226 11.195 10 8 10s-4.757 1.225-5.468 2.37A6.987 6.987 0 0 0 8 15a6.987 6.987 0 0 0 5.468-2.63z"></path>
+                            <path fill-rule="evenodd" d="M8 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                            <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8z"></path>
+                        </svg>&nbsp;Valeriu Cernei</button> <button class="btn btn-light btn-lg" type="button" style="font-size: 16px;margin-right: 16px;" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</button><button class="btn btn-warning btn-lg" type="button" style="font-size: 16px;">Sell car</button></span></div>
+            <div class="modal fade" role="dialog" tabindex="-1" id="loginModal">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title"><strong>Login Form</strong></h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="mb-3"><label class="form-label" for="loginInput">Username or Email Address</label><input class="form-control" type="text" id="loginInput" placeholder="username or email address" required=""></div>
+                                <div><label class="form-label" for="passwordInput">Password</label><input class="form-control" type="password" id="passwordInput" placeholder="******" required=""></div>
+                                <div class="alert alert-danger mt-3" role="alert"><span>No user found with such login and password.</span></div><button class="btn btn-link btn-sm mb-3" type="button" data-bs-toggle="modal" data-bs-dismiss="modal" data-bs-target="#forgotModal">Forgot password?</button>
+                                <div class="form-check mb-3"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">Remeber me</label></div>
+                                <div class="container" style="padding: 0;">
+                                    <div class="row">
+                                        <div class="col-6 col-md-6"><button class="btn btn-primary btn-lg" type="submit">Login</button></div>
+                                        <div class="col-6 col-md-6 text-end"><button class="btn btn-secondary btn-lg" type="button" style="margin-left: 16px;">Sign up</button></div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button d-none d-md-block" id="submenu">
+        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <div id="main-nav" class="container navbar-collapse collapse" style="padding-left: 0px;padding-right: 0px;">
+                    <ul class="navbar-nav w-100">
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="http://treedax.com" style="padding-left: 0px;">Sedan</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Combi</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Compact</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Coupe</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Cabrio</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Suv</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">City-car</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Mini</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-5" style="margin-bottom: 200px;">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert"><span>Your email address has been&nbsp;successfully confirmed. You can go to the main page by&nbsp;<a class="alert-link" href="#">Clicking here.</a>&nbsp;</span></div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-basic" style="border-top-style: solid;border-top-color: rgb(219,55,39);">
+        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Carmarket ©&nbsp; 2021<br></p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
+    <script src="assets/js/Image-Tab-Gallery-Horizontal.js"></script>
+    <script src="assets/js/Lightbox-Gallery.js"></script>
+    <script src="assets/js/new-ad.js"></script>
+    <script src="assets/js/quick-search.js"></script>
+    <script src="assets/js/Simple-Slider.js"></script>
+</body>
+
+</html>

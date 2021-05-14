@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="assets/css/profile-info.css">
+<link rel="stylesheet" href="assets/css/profile.css">
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-4 col-lg-3 col-xl-3">
+            <div class="card" id="profile-box">
+                <div class="card-body">
+                    <div class="photo mt-3"><i class="fa fa-user-circle-o"></i></div>
+                    <h5 class="card-title"><strong class="profileFLname"></strong></h5>
+                    <p class="admin d-none"></p>
+                    <ul class="list-unstyled mt-3">
+                        <li active=""><a href="#profile" class="btn active" type="button">Personal information</a></li>
+                        <li active=""><a href="#publications" class="btn" type="button">Your publications</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg-9 col-xl-9">
+            <div class="card" id="profile-info">
+                <div class="card-body">
+                    <h4 class="card-title"><strong>Personal information</strong></h4>
+                    <form id="profileUpdateForm" method="post" onsubmit="updateProfile(); return false;">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <ul class="list-unstyled">
+                                    <li>User's ID:&nbsp;<span id="userID"></span></li>
+                                    <li>Registration date:&nbsp;<span id="userRegDate"></span></li>
+                                    <li>Status:&nbsp;<span class="active" id="userStatus"></span></li>
+                                </ul>
+                                <hr>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 col-xl-6 mb-3"><label class="form-label" for="fname">First name</label><input class="form-control" type="text" id="fname" name="fname" minlength="2" maxlength="24" required="" disabled=""></div>
+                            <div class="col-sm-6 col-lg-6 col-xl-6 mb-3"><label class="form-label" for="lname">Last name</label><input class="form-control" type="text" id="lname" name="lname" minlength="2" maxlength="24" required="" disabled=""></div>
+                            <div class="col-sm-6 col-lg-6 col-xl-6"><label class="form-label" for="email">Email address</label><input class="form-control" type="email" id="email" name="email" maxlength="32" minlength="6" required="" disabled=""></div>
+                            <div class="col-sm-6 col-lg-6 col-xl-6" style="padding-bottom: 0;"><label class="form-label" for="phone">Phone number</label>
+                                <div class="input-group mb-3"><span class="input-group-text">+</span><input class="form-control" type="tel" id="phone" name="phone" required="" maxlength="15" minlength="7" disabled=""></div>
+                            </div>
+                            <div class="col-xxl-12">
+                                <div id="emailAlert" class="alert alert-danger" style="display:none;" role="alert"></div>
+                            </div>
+                            <div class="col-sm-6 col-lg-6 col-xl-6 mb-3"><label class="form-label" for="updpass1">New password</label><input class="form-control" type="password" id="updpass1" name="pass" minlength="6" maxlength="32" disabled=""></div>
+                            <div class="col-sm-6 col-lg-6 col-xl-6 mb-3"><label class="form-label" for="updpass2">Confirm new Password</label><input class="form-control" type="password" id="updpass2" minlength="6" maxlength="32" disabled=""></div>
+                            <div class="col-xxl-12">
+                                <div id="passwordsAlert" class="alert alert-danger mb-0 d-none"role="alert"></div>
+                            </div>
+                            <div class="col text-end mt-3">
+                                <div id="savedAlert" class="d-inline-block d-none"><p class="text-success">Saved</p></div>
+                                <button id="profileUpdateButton" class="btn btn-primary d-inline-block disabled" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

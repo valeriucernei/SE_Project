@@ -1,0 +1,22 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-10 col-lg-8 col-xl-6 col-xxl-6 offset-md-1 offset-lg-2 offset-xl-3 offset-xxl-3">
+            <div class="card" style="padding: 8px 16px;">
+                <div class="card-body">
+                    <h4 class="text-center card-title">Password reset</h4>
+                    <form id="resetForm" onsubmit="doReset(); return false;">
+                        <div class="row">
+                            <input id="change-password-token" name="token" type="hidden">
+                            <div class="col-md-6 mt-3"><label class="form-label" for="resetpasswordInput">New Password<span style="color: red;">*</span></label><input class="form-control form-control mb-3" type="password" id="resetpasswordInput" required="" minlength="6" maxlength="32"></div>
+                            <div class="col-md-6 mt-3"><label class="form-label" for="resetpasswordInput2">Confirm New Password<span style="color: red;">*</span></label><input class="form-control form-control mb-3" type="password" id="resetpasswordInput2" required="" minlength="6" maxlength="32"></div>
+                            <div class="col-xxl-12">
+                                <div id="resetAlert" class="alert alert-danger" role="alert"></div>
+                            </div>
+                            <div class="col text-end"><button id="resetButton" class="btn btn-primary" type="submit">Reset Password</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+.modal-header {
+  border-bottom-width: 6px;
+  border-bottom-color: rgb(219,55,39);
+}
+
+.input-group.mb-3 {
+  max-width: 100%;
+}
+

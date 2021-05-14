@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CarMarket</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/img/180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/512.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/Image-Tab-Gallery-Horizontal.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
+    <link rel="stylesheet" href="assets/css/login-register.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/pagination.css">
+    <link rel="stylesheet" href="assets/css/Pretty-Search-Form.css">
+    <link rel="stylesheet" href="assets/css/profile-info.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
+    <link rel="stylesheet" href="assets/css/publications.css">
+    <link rel="stylesheet" href="assets/css/Simple-Slider.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body style="font-family: Poppins, sans-serif;">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="padding: 8px;border-bottom-style: none;">
+        <div class="container"><a class="navbar-brand logo" href="#" style="font-family: Poppins, sans-serif;font-size: 24px;">carmarket</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse text-end" id="navcol-1"><span class="ms-auto navbar-text actions" style="min-width: 194px;padding-left: 8px;"> <button class="btn btn-light btn-lg" type="button" style="font-size: 16px;margin-right: 16px;" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</button><button class="btn btn-warning btn-lg" type="button" style="font-size: 16px;">Sell car</button></span></div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button d-none d-md-block" id="submenu">
+        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <div id="main-nav" class="container navbar-collapse collapse" style="padding-left: 0px;padding-right: 0px;">
+                    <ul class="navbar-nav w-100">
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="http://treedax.com" style="padding-left: 0px;">Sedan</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Combi</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Compact</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Coupe</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Cabrio</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Suv</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">City-car</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#">Mini</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-4 col-lg-3 col-xl-3">
+                <div class="card" id="profile-box">
+                    <div class="card-body">
+                        <div class="photo mt-3"><i class="fa fa-user-circle-o"></i></div>
+                        <h5 class="card-title"><strong>Fname Lname</strong></h5>
+                        <p class="admin">Admin Lvl. 1</p>
+                        <ul class="list-unstyled mt-3">
+                            <li active=""><button class="btn active" type="button">Personal information</button></li>
+                            <li active=""><button class="btn" type="button">Your publications</button></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-lg-9 col-xl-9">
+                <div class="card" id="profile-info">
+                    <div class="card-body">
+                        <h4 class="card-title"><strong>Personal information</strong></h4>
+                        <form>
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <ul class="list-unstyled">
+                                        <li>User's ID:&nbsp;<span>999#</span></li>
+                                        <li>Registration date:&nbsp;<span>01-01-2021</span></li>
+                                        <li>Status:&nbsp;<span class="active">ACTIVE</span></li>
+                                    </ul>
+                                    <hr>
+                                </div>
+                                <div class="col-sm-6 col-lg-6 col-xl-6 mb-3"><label class="form-label" for="fname">First name</label><input class="form-control" type="text" id="fname" value="FirstName" minlength="2" maxlength="24" required=""></div>
+                                <div class="col-sm-6 col-lg-6 col-xl-6 mb-3"><label class="form-label" for="lname">Last name</label><input class="form-control" type="text" id="lname" value="LastName" minlength="2" maxlength="24" required=""></div>
+                                <div class="col-sm-6 col-lg-6 col-xl-6"><label class="form-label" for="email">Email address</label><input class="form-control" type="email" id="email" value="example@mail.com" maxlength="32" minlength="6" required=""></div>
+                                <div class="col-sm-6 col-lg-6 col-xl-6" style="padding-bottom: 0;"><label class="form-label" for="phone">Phone number</label>
+                                    <div class="input-group mb-3"><span class="input-group-text">+</span><input class="form-control" type="tel" id="phone" required="" maxlength="15" minlength="7" value="123 456 789"></div>
+                                </div>
+                                <div class="col-xxl-12">
+                                    <div class="alert alert-danger" role="alert"><span>User with such <strong>email address</strong> already exists!<br></span></div>
+                                </div>
+                                <div class="col-sm-6 col-lg-6 col-xl-6 mb-3"><label class="form-label" for="password">New password</label><input class="form-control" type="password" id="password" minlength="6" maxlength="32" required="" placeholder="******"></div>
+                                <div class="col-sm-6 col-lg-6 col-xl-6 mb-3"><label class="form-label" for="passwordconfirm">Confirm new Password</label><input class="form-control" type="password" id="passwordconfirm" minlength="6" maxlength="32" required="" placeholder="******"></div>
+                                <div class="col-xxl-12">
+                                    <div class="alert alert-danger mb-0" role="alert"><span>Passwords <strong>DO</strong>&nbsp;<strong>NOT </strong>match!<br></span></div>
+                                </div>
+                                <div class="col text-end mt-3">
+                                    <p class="text-success d-inline-block me-3">Saved</p><button class="btn btn-primary d-inline-block" type="button">Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer-basic" style="border-top-style: solid;border-top-color: rgb(219,55,39);">
+        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Home</a></li>
+            <li class="list-inline-item"><a href="#">Services</a></li>
+            <li class="list-inline-item"><a href="#">About</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Carmarket ©&nbsp; 2021<br></p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
+    <script src="assets/js/Image-Tab-Gallery-Horizontal.js"></script>
+    <script src="assets/js/Lightbox-Gallery.js"></script>
+    <script src="assets/js/new-ad.js"></script>
+    <script src="assets/js/quick-search.js"></script>
+    <script src="assets/js/Simple-Slider.js"></script>
+</body>
+
+</html>

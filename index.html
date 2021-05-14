@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CarMarket</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/32.png">
+    <link rel="icon" type="image/png" sizes="180x180" href="assets/img/180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/512.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css">
+    <link rel="stylesheet" href="assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="assets/css/cards.css">
+    <link rel="stylesheet" href="assets/css/Footer-Basic.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.1.1/dist/select2-bootstrap-5-theme.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="assets/css/login-register.css">
+    <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
+    <link rel="stylesheet" href="assets/css/pagination.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/spapp.css">
+</head>
+<body style="border-style: none;font-family: Poppins, sans-serif;background: rgb(247, 247, 247);">
+
+    <!-- FIRST NAVBAR -->
+
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="padding: 8px;border-bottom-style: none;">
+        <div class="container"><a class="navbar-brand logo" href="#main" style="font-family: Poppins, sans-serif;font-size: 32px;">carmarket</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1"><span class="ms-auto navbar-text" style="min-width: 200px;">
+                <a href="#profile" id="profileButton" class="btn btn-white btn-lg login-user" type="button" style="font-size: 16px;"></a>
+                <button id="logout" class="btn btn-white btn-lg login-user" type="button" style="font-size: 16px;">Log out</button>
+                <button class="btn btn-light btn-lg login-guest" type="button" style="font-size: 16px;margin-right: 16px; display:none;" data-bs-toggle="modal" data-bs-target="#loginModal">Sign In</button>
+                <a href="#new" class="btn btn-warning btn-lg" type="button" style="font-size: 16px;">Sell car</a>
+
+            </span></div>
+        </div>
+    </nav>
+
+    <!-- SECOND RED NAVBAR -->
+
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button d-none d-md-block" id="submenu">
+        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <div id="main-nav" class="container navbar-collapse collapse" style="padding-left: 0px;padding-right: 0px;">
+                    <ul class="navbar-nav w-100">
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#main" style="padding-left: 0px;">Sedan</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#main">Combi</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#main">Compact</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#main">Coupe</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#main">Cabrio</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#main">Suv</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#main">City-car</a></li>
+                        <li class="nav-item"><a class="text-start link-light nav-link" href="#main">Mini</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LOGIN MODAL -->
+
+    <div class="modal fade" role="dialog" tabindex="-1" id="loginModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><strong>Login Form</strong></h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm" method="post" onsubmit="doLogin(); return false;">
+                        <div class="mb-3"><label class="form-label" for="loginInput">Username or Email Address</label><input name="login" class="form-control" type="text" id="loginInput" placeholder="username or email address" required=""></div>
+                        <div><label class="form-label" for="passwordInput">Password</label><input name="pass" class="form-control" type="password" id="passwordInput" placeholder="password" required=""></div>
+                        <div id="wrongPass" class="alert alert-danger mt-3" role="alert" style="display: none;"><span>No user found with such login and password.</span></div><a class="btn btn-link btn-sm mb-3" onclick="$('#loginModal').modal('hide')" href="#forgot" type="button">Forgot password?</a>
+                        <div class="container" style="padding: 0;">
+                            <div class="row">
+                                <div class="col-6 col-md-6"><button id="loginButton" type="submit" class="btn btn-primary btn-lg loginButton">Login</button></div>
+                                <div class="col-6 col-md-6 text-end"><a class="btn btn-secondary btn-lg" href="#register" onclick="$('#loginModal').modal('hide')" type="button" style="margin-left: 16px;">Sign up</a></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTENT -->
+
+    <main id="spapp" role="main">
+        <section id="main" data-load="listings.html"></section>
+        <section id="confirm" data-load="confirm.html"></section>
+        <section id="forgot" data-load="forgot.html"></section>
+        <section id="new" data-load="new.html"></section>
+        <section id="profile" data-load="profile.html"></section>
+        <section id="publications" data-load="publications.html"></section>
+        <section id="register" data-load="register.html"></section>
+        <section id="reset" data-load="reset.html"></section>
+        <section id="view" data-load="view.html"></section>
+        <section id="view_profile" data-load="view_profile.html"></section>
+    </main>
+
+    <!-- FOOTER -->
+
+    <footer class="footer-basic" style="border-top-style: solid;border-top-color: rgb(219,55,39);">
+        <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#main">Home</a></li>
+            <li class="list-inline-item"><a href="#main">Services</a></li>
+            <li class="list-inline-item"><a href="#main">About</a></li>
+            <li class="list-inline-item"><a href="#main">Terms</a></li>
+            <li class="list-inline-item"><a href="#main">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Carmarket ©&nbsp; 2021<br></p>
+    </footer>
+
+    <!-- SCRIPTS -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/6.4.8/swiper-bundle.min.js"></script>
+    <script src="assets/js/jquery.spapp.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>
