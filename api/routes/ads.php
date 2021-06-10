@@ -24,8 +24,7 @@
 *     @OA\Response(response="200", description="Lists ads from database")
 * )
 */
-Flight::route('GET /ads', function()
-{
+Flight::route('GET /ads', function() {
     $offset = Flight::query('offset', 0);
     $limit = Flight::query('limit', 10);
     $search = Flight::query('search');
@@ -44,7 +43,6 @@ Flight::route('GET /ads', function()
     $fuel_type = Flight::query('fuel_type');
     $motor_size_min = Flight::query('motor_size_min',0);
     $motor_size_max = Flight::query('motor_size_max',10000);
-
     Flight::json(Flight::adsservice()->get_ads($search, $offset, $limit, $order,
     $user_id, $brand, $model, $car_body, $fabricated_min, $fabricated_max, $km_min, $km_max,
     $price_min, $price_max, $gearbox, $fuel_type, $motor_size_min, $motor_size_max));
@@ -56,8 +54,7 @@ Flight::route('GET /ads', function()
 *     @OA\Response(response="200", description="Fetched ad info")
 * )
 */
-Flight::route('GET /ads/@id', function($id)
-{
+Flight::route('GET /ads/@id', function($id) {
     flight::json(Flight::adsservice()->get_ad_by_id($id));
 });
 
@@ -82,10 +79,8 @@ Flight::route('GET /ads/@id', function($id)
 *  @OA\Response(response="200", description="Ad that has been added into database with ID assigned.")
 * )
 */
-Flight::route('POST /user/ads/add', function()
-{
-    Flight::json(Flight::adsservice()->add_ad(Flight::get('user'),
-                  Flight::request()->data->getData()));
+Flight::route('POST /user/ads/add', function() {
+    Flight::json(Flight::adsservice()->add_ad(Flight::get('user'), Flight::request()->data->getData()));
 });
 
 /**
@@ -110,12 +105,8 @@ Flight::route('POST /user/ads/add', function()
  *     @OA\Response(response="200", description="Update account based on id")
  * )
  */
-Flight::route('PUT /user/ads/@id', function($id)
-{
-    if(Flight::adsservice()->get_ad_by_id($id)['user_id'] != Flight::get('user')['id'])
-        throw new Exception("You don't have access to this ad.", 403);
-
-    Flight::json(Flight::adsservice()->update_ad($id, Flight::request()->data->getData()));
+Flight::route('PUT /user/ads/@id', function($id) {
+    Flight::json(Flight::adsservice()->update_user_ad(Flight::get('user')['id'], $id, Flight::request()->data->getData()));
 });
 
 /**
@@ -140,7 +131,26 @@ Flight::route('PUT /user/ads/@id', function($id)
  *     @OA\Response(response="200", description="Update account based on id")
  * )
  */
-Flight::route('PUT /admin/ads/@id', function($id)
-{
+Flight::route('PUT /admin/ads/@id', function($id) {
     Flight::json(Flight::adsservice()->update_ad($id, Flight::request()->data->getData()));
+});
+
+/**
+* @OA\Get(path="/user/ads/verify/{ad_id}", tags={"x-user", "advertisements"}, security={{"ApiKeyAuth":{}}},
+*     @OA\Parameter(@OA\Schema(type="integer"), in="path", type="integer", name="ad_id", example=1, deion="ID of the ad"),
+*     @OA\Response(response="200", deion="Fetch individual advertisement")
+* )
+*/
+Flight::route('GET /user/ads/verify/@ad_id', function($ad_id) {
+    Flight::json(Flight::adsservice()->verify_ad_user(Flight::get('user')['id'], $ad_id));
+});
+
+/**
+* @OA\Get(path="/user/ads/delete/{ad_id}", tags={"x-user", "advertisements"}, security={{"ApiKeyAuth":{}}},
+*     @OA\Parameter(@OA\Schema(type="integer"), in="path", type="integer", name="ad_id", example=1, deion="ID of the ad"),
+*     @OA\Response(response="200", deion="Success! Ad deleted.")
+* )
+*/
+Flight::route('GET /user/ads/delete/@ad_id', function($ad_id) {
+    Flight::json(Flight::adsservice()->delete_ad(Flight::get('user')['id'], $ad_id));
 });

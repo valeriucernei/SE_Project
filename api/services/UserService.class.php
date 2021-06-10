@@ -3,26 +3,39 @@ require_once dirname(__FILE__)."/BaseService.class.php";
 require_once dirname(__FILE__)."/../dao/UserDao.class.php";
 require_once dirname(__FILE__)."/../clients/SMTPClient.class.php";
 
-class UserService extends BaseService
-{
+/**
+ * User Service Class inheriting Base Service Class
+ *
+ */
+class UserService extends BaseService {
+
     private $smtpClient;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->dao = new UserDao();
         $this->smtpClient = new SMTPClient();
     }
 
-    public function get_users($search, $offset, $limit, $order)
-    {
+    /**
+     * Get all users by specific critera
+     * @param  string $search Search string
+     * @param  int $offset Offset of array
+     * @param  int $limit  Limit of object in array
+     * @param  string $order  Order objects in array
+     * @return array      Array of users' objects
+     */
+    public function get_users($search, $offset, $limit, $order) {
         if($search)
             return $this->dao->get_users($search, $offset, $limit, $order);
         else
             return $this->dao->get_all($offset, $limit, $order);
     }
 
-    public function add($user)
-    {
+    /**
+     * Add new user to Data Base
+     * @param object $user User's data
+     */
+    public function add($user) {
         if(!isset($user['username']))
             throw new Exception("ERROR! Username is missing.");
 
@@ -30,12 +43,17 @@ class UserService extends BaseService
         return parent::add($user);
     }
 
-    public function register($user)
-    {
+    /**
+     * Register a new user to Data Base
+     * @param  object $user User's data
+     * @return object       Object of new user with ID
+     */
+    public function register($user) {
         if(!isset($user['username']))
             throw new Exception("Username field is required.", 400);
         if(preg_match('/[^A-Za-z0-9]/', $user['username']))
-            throw new Exception("Username must have only A-z characters and 0-9 numbers.", 400);
+            throw new Exception("Username must have only A-z characters and 0-9
+                                  numbers.", 400);
         if(!isset($user['email']))
             throw new Exception("Email field is required.", 400);
         if(!isset($user['fname']))
@@ -58,27 +76,35 @@ class UserService extends BaseService
               'phone' => $user['phone'],
               'token' => $user['token']
             ]);
+
         } catch (\Exception $e) {
             if(str_contains($e->getMessage(), 'users.username_UNIQUE'))
-                throw new Exception("Account with same username exists in data base.", 400, $e);
+                throw new Exception("Account with same username exists in
+                                      data base.", 400, $e);
+
             else if(str_contains($e->getMessage(), 'users.email_UNIQUE'))
-                throw new Exception("Account with same email address exists in data base.", 400, $e);
+                throw new Exception("Account with same email address exists in
+                                      data base.", 400, $e);
+
             else throw $e;
         }
         $this->smtpClient->send_register_user_token($user);
-
         return $user;
     }
 
-    public function confirm($token)
-    {
+    /**
+     * Confirm user's registration by token
+     * @param  string $token token
+     * @return object        Message of success or failure
+     */
+    public function confirm($token) {
         $user = $this->dao->get_user_by_token($token);
         if(!isset($user['id']))
             throw new Exception("Invalid token.");
 
         $this->dao->update($user['id'], [
-        "status" => "ACTIVE",
-        "token" => NULL
+            "status" => "ACTIVE",
+            "token" => NULL
         ]);
 
         $this->smtpClient->send_confirmed_email($user);
@@ -86,8 +112,12 @@ class UserService extends BaseService
         return $user;
     }
 
-    public function login($user)
-    {
+    /**
+     * Login a user to the site
+     * @param  object $user Object of user's inserted data
+     * @return object       Object with token inside
+     */
+    public function login($user) {
         if(parent::checkEmail($user['login']))
             $db_user = $this->dao->get_user_by_email($user['login']);
         else
@@ -95,26 +125,38 @@ class UserService extends BaseService
 
         if(!isset($db_user['id']))
             throw new Exception("User doesn't exist.", 400);
+
         if($db_user['status'] != 'ACTIVE')
             throw new Exception("Your account has not been yet activated,
                                   or is blocked.", 400);
+
         if(md5($user['pass']) != $db_user['pass'])
             throw new Exception("You have entered a wrong password.", 400);
 
         return $db_user;
     }
 
-    public function forgot($user)
-    {
+    /**
+     * Start user's password forgot operations
+     * @param  object $user User's entered data object
+     * @return object       Object with message of confirmation
+     */
+    public function forgot($user) {
         $db_user = $this->dao->get_user_by_email($user['email']);
+
         if(!isset($db_user['id']))
             throw new Exception("User doesn't exist.", 400);
-        if($db_user['status'] != 'ACTIVE')
-            throw new Exception("You account has not been yet activated, or is blocked.", 400);
 
-        $time = strtotime(date(config::DATA_FORMAT)) - strtotime($db_user['token_created_at']);
+        if($db_user['status'] != 'ACTIVE')
+            throw new Exception("You account has not been yet activated,
+                                  or is blocked.", 400);
+
+        $time = strtotime(date(config::DATA_FORMAT))
+                - strtotime($db_user['token_created_at']);
+
         if( $time < 300 )
-          throw new Exception("A new token can be generated in ".(300-$time)." seconds!", 400);
+            throw new Exception("A new token can be generated in ".(300-$time)."
+                                  seconds!", 400);
 
         $db_user = parent::update($db_user['id'], [
             'token' => md5(random_bytes(16)),
@@ -123,11 +165,17 @@ class UserService extends BaseService
         $this->smtpClient->send_recovery_email($db_user);
     }
 
-    public function reset($user)
-    {
+    /**
+     * Reset user's password
+     * @param  object $user User's inserted data object
+     * @return object       Object with user's token
+     */
+    public function reset($user) {
         $db_user = $this->dao->get_user_by_token($user['token']);
+
         if(!isset($db_user['id']))
             throw new Exception("Invalid token.");
+
         if(strtotime(date(config::DATA_FORMAT)) - strtotime($db_user['token_created_at']) > 3600)
             throw new Exception("Reset token expired. Generate a new one.", 400);
 
@@ -138,43 +186,68 @@ class UserService extends BaseService
         return $db_user;
     }
 
-    public function update_info($id, $data)
-    {
+    /**
+     * Update user's information
+     * @param  int $id   ID of the user
+     * @param  object $data Object of user's data
+     * @return object       Updated user's data
+     */
+    public function update_info($id, $data) {
         $verify = $this->dao->get_by_id($id);
-        if(!isset($data['fname']) || strlen($data['fname'])<3)
+
+        if(!isset($data['fname']) || strlen($data['fname']) < 3)
             $data['fname'] = $verify['fname'];
-        if(!isset($data['lname']) || strlen($data['lname'])<3)
+
+        if(!isset($data['lname']) || strlen($data['lname']) < 3)
             $data['lname'] = $verify['lname'];
-        if(!isset($data['email']) || strlen($data['email'])<3)
+
+        if(!isset($data['email']) || strlen($data['email']) < 3)
             $data['email'] = $verify['email'];
-        if(!isset($data['phone']) || strlen($data['phone'])<3)
+
+        if(!isset($data['phone']) || strlen($data['phone']) < 3)
             $data['phone'] = $verify['phone'];
-        if(!isset($data['pass']) || strlen($data['pass'])<6)
+
+        if(!isset($data['pass']) || strlen($data['pass']) < 6)
             $data['pass'] = $verify['pass'];
+
         else $data['pass'] = md5($data['pass']);
 
         try {
             return $this->update($id, $data);
+
         } catch (\Exception $e) {
             if(str_contains($e->getMessage(), 'users.username_UNIQUE'))
-                throw new Exception("Account with same username exists in data base.", 400, $e);
+                throw new Exception("Account with same username exists in
+                                      data base.", 400, $e);
+
             else if(str_contains($e->getMessage(), 'users.email_UNIQUE'))
-                throw new Exception("Account with same email address exists in data base.", 400, $e);
+                throw new Exception("Account with same email address exists in
+                                      data base.", 400, $e);
+
             else throw $e;
         }
     }
 
-    public function get_by_id_basic($id)
-    {
+    /**
+     * Get basic user's info by ID
+     * @param  int $id ID of the user
+     * @return object     Object with basic user's info
+     */
+    public function get_by_id_basic($id) {
         $db_user = $this->dao->get_by_id($id);
+
         $result = [
           'username' => $db_user['username'],
           'fname' => $db_user['fname'],
           'email' => $db_user['email'],
           'phone' => $db_user['phone'],
+          'status' => $db_user['status'],
           'reg_date' => $db_user['reg_date']
         ];
+
         if(isset($db_user['lname'])) $result['lname'] = $db_user['lname'];
+
         return $result;
     }
+
 }
