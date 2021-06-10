@@ -1,5 +1,5 @@
 # carmarket
-Software Engineering Project 2021
+Project 2021
 Team members:
 - Cernei Valeriu
 - Topala Nicolae
