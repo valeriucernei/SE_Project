@@ -1,0 +1,64 @@
+<!-- <script src="assets/js/new-ad.js"></script> -->
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-12 col-lg-10 col-xl-8 col-xxl-8 offset-lg-1 offset-xl-2 offset-xxl-2 mb-3">
+            <div class="card">
+                <div class="card-body" style="padding: 8px 16px;">
+                    <form id="editListingForm" method="post" onsubmit="Edit.update(); return false;">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <h4 style="text-align: center;">Edit your offer</h4>
+                                <p style="text-align: center;">Below you have all current offer information. Edit it and press save.</p>
+                            </div>
+                            <div class="col-xxl-12 mb-4"><label class="form-label" for="newad-car-body">Car body<span style="color: red;">*</span></label><select class="form-select js-body js-change" name="car_body" id="newad-car-body" required="">
+                                    <option value="" selected=""></option>
+                                    <option value="1">Sedan</option>
+                                    <option value="2">Combi</option>
+                                    <option value=""></option>
+                                </select></div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-4"><label class="form-label" for="newad-brand">Brand<span style="color: red;">*</span></label><select class="form-select js-brand js-change" name="brand" id="newad-brand" required="">
+                                    <option value="" selected=""></option>
+                                </select></div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-4"><label class="form-label" for="newad-model">Model<span style="color: red;">*</span></label><select class="form-select js-model js-change" name="model" id="newad-model" disabled="" required="">
+                                    <option value="" selected=""></option>
+                                </select></div>
+                            <div class="col-xxl-12 mb-4"><label class="form-label" for="newad-title">Ad Title<span style="color: red;">*</span></label><input class="form-control" type="text" name="title" id="newad-title" placeholder="Best car ever! Buy it now!" maxlength="32" required=""></div>
+                            <div class="col-xxl-12"><label class="form-label" for="newad-description">Description</label><textarea class="form-control js-change" name="description" id="editad-description" rows="5" maxlength="1000" placeholder="Description like vehicle's conditions, problems, good things..."></textarea>
+                                <p id="newad-count" style="text-align: right;">0 / 1000</p>
+                            </div>
+                            <div class="col-xxl-12">
+                                <h4 style="text-align: center;">Detailed vehicle attributes</h4>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-4"><label class="form-label" for="newad-price">Price<span style="color: red;">*</span></label>
+                                <div class="input-group"><input class="form-control" type="number" name="price" id="newad-price" placeholder="10000" required=""><span class="input-group-text">€<br></span></div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-4"><label class="form-label" for="newad-km">Mileage</label>
+                                <div class="input-group"><input class="form-control" type="number" name="km" id="newad-km" min="0" max="1000000" placeholder="150000"><span class="input-group-text">Km</span></div>
+                            </div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-4"><label class="form-label" for="newad-year">Year of fabrication<span style="color: red;">*</span></label><input class="form-control" type="number" name="fabricated" id="newad-year" min="1900" max="2038" placeholder="2018" required=""></div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-4"><label class="form-label" for="newad-motor">Motor size (cm<sup>3</sup>)</label><input class="form-control" type="number" name="motor_size" id="newad-motor" max="10000" placeholder="2200"></div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-4"><label class="form-label" for="newad-gearbox">Gearbox</label><select class="form-select js-gear js-change" name="gearbox" id="newad-gearbox" required="">
+                                    <option value="" selected=""></option>
+                                    <option value="1">Manual</option>
+                                    <option value="2">Automatic</option>
+                                </select></div>
+                            <div class="col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6 mb-4"><label class="form-label" for="newad-year">Fuel</label><select class="form-select js-fuel js-change" name="fuel_type" id="newad-fuel" required="">
+                                    <option value="" selected=""></option>
+                                    <option value="1">Diesel</option>
+                                    <option value="2">Gasoline</option>
+                                    <option value="3">Gas</option>
+                                    <option value="4">Hybrid</option>
+                                    <option value="5">Electric</option>
+                                </select></div>
+                            <div id="zaebit"></div>
+                            <div class="col-xxl-12">
+                                <p class="text-start text-muted" style="font-size: 14px;"><span style="color: red;">*</span>These fields are mandatory.</p>
+                            </div>
+                            <div class="col-xxl-12 text-end mb-3"><button class="btn btn-link" type="button">Cancel</button><button id="newEditButton" class="btn btn-primary btn-lg" type="submit">Update</button></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,11 +1,9 @@
-<!--<script src="assets/js/quick-search.js"></script> -->
-<link rel="stylesheet" href="assets/css/loader.css">
 <div class="container" style="margin-top: 18px;">
     <div class="row text-center justify-content-center">
         <div class="col-md-12 col-lg-12 col-xl-11 col-xxl-3">
             <div class="card sticky-md-top">
                 <h4 class="text-center" style="margin: 6px 0 0;"><strong>Search</strong></h4>
-                <form id="searchForm" onsubmit="updateListings(1); return false;">
+                <form id="searchForm" onsubmit="Listings.refresh(1); return false;">
                 <div class="row" style="margin: auto; width:100%;">
                     <div class="col-6 col-md-6 col-lg-3 col-xl-2 col-xxl-6" style="padding: 8px;">
                         <h6 class="text-text-muted">Brand</h6><select name="brand" id="searchBrand" class="js-brand js-select2-notags js-select2-settings">

@@ -4,7 +4,7 @@
             <div class="card" style="padding: 8px 16px;">
                 <div class="card-body">
                     <h4 class="text-center card-title">Password reset</h4>
-                    <form id="resetForm" onsubmit="doReset(); return false;">
+                    <form id="resetForm" onsubmit="Reset.reset(); return false;">
                         <div class="row">
                             <input id="change-password-token" name="token" type="hidden">
                             <div class="col-md-6 mt-3"><label class="form-label" for="resetpasswordInput">New Password<span style="color: red;">*</span></label><input class="form-control form-control mb-3" type="password" id="resetpasswordInput" required="" minlength="6" maxlength="32"></div>

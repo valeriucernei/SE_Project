@@ -4,7 +4,7 @@
         <div class="col-md-12 col-lg-10 col-xl-8 col-xxl-8 offset-lg-1 offset-xl-2 offset-xxl-2 mb-3">
             <div class="card">
                 <div class="card-body" style="padding: 8px 16px;">
-                    <form id="newListingForm" method="post" onsubmit="addNewListing(); return false;">
+                    <form id="newListingForm" method="post" onsubmit="New.add(); return false;" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-xxl-12">
                                 <h4 style="text-align: center;">Publish your offer</h4>
@@ -26,7 +26,20 @@
                             <div class="col-xxl-12"><label class="form-label" for="newad-description">Description</label><textarea class="form-control" name="description" id="newad-description" rows="5" maxlength="1000" placeholder="Description like vehicle's conditions, problems, good things..."></textarea>
                                 <p id="newad-count" style="text-align: right;">0 / 1000</p>
                             </div>
-                            <div class="col-xxl-12 mb-4"><label class="form-label">Vehicle photos</label><input class="form-control" type="file" multiple="" accept=".jpg, .jpeg, .png"></div>
+                            <div class="col-xxl-12 mb-4">
+                                <label class="form-label">Vehicle photos</label>
+                                <fieldset class="form-group">
+                                    <a href="javascript:void(0)" onclick="$('#pro-image').click()" style="text-decoration: none">
+                                        <div class="input-group">
+                                            <span class="input-group-text rounded-0 rounded-top rounded-bottom" id="imagesInputLabel">Select images<br></span>
+                                            <input class="form-control rounded-0 rounded-top rounded-bottom" id="imagesInputNumber" value="Selected: 0" disabled readonly style="background-color:white; cursor: pointer;">
+                                        </div>
+                                    </a>
+                                    <input type="file" id="pro-image" style="display: none;" class="form-control" multiple accept=".jpg, .jpeg, .png">
+                                </fieldset>
+                                <div class="preview-images-zone rounded-bottom border border-top-0" style="display:none;"></div>
+                                <div id="imagesAlert" class="alert alert-danger mt-3" role="alert" style="display: none;"><span>Maximum number of photos is 10.</span></div>
+                            </div>
                             <div class="col-xxl-12">
                                 <h4 style="text-align: center;">Detailed vehicle attributes</h4>
                             </div>
@@ -54,7 +67,7 @@
                             <div class="col-xxl-12">
                                 <p class="text-start text-muted" style="font-size: 14px;"><span style="color: red;">*</span>These fields are mandatory.</p>
                             </div>
-                            <div class="col-xxl-12 text-end mb-3"><button class="btn btn-link" type="button">Cancel</button><button class="btn btn-primary btn-lg" type="submit">Publish</button></div>
+                            <div class="col-xxl-12 text-end mb-3"><button class="btn btn-link" type="button">Cancel</button><button id="newAdButton" class="btn btn-primary btn-lg" type="submit">Publish</button></div>
                         </div>
                     </form>
                 </div>
@@ -62,3 +75,65 @@
         </div>
     </div>
 </div>
+
+
+<script type="text/javascript">
+/*    $(function () {
+
+    });
+
+    function file2base64(event){
+        var temp = {};
+        for(var i = 0; i < event.files.length; i++){
+            temp[i] = {"name" : event.files[i].name};
+        }
+        console.log(event.files);
+        //delete temp[1];
+        console.log(temp);
+        $('#upload-images').html("");
+        for(var i = 0; i < event.files.length; i++){
+            var f = event.files[i];
+            var reader = new FileReader();
+
+            reader.onload = (function(theFile) {
+                return function(e) {
+                    //$('#upload-img').attr('src', e.target.result);
+                    $('#upload-images').append('<img id="upload-img" src="'+ e.target.result +'" alt="wait for upload" style="width:100px; height:75px; object-fit: cover; background-color: red;">');
+                    console.log(e);
+
+                    var upload = {
+                        name: f.name,
+                        content: e.target.result.split(',')[1]
+                    };
+
+                    $.ajax({
+                        url: "api/user/photos/add",
+                        type: "POST",
+                        data: JSON.stringify(upload),
+                        contentType: "application/json",
+                        beforeSend: function(xhr){
+                            xhr.setRequestHeader('Authentication', localStorage.getItem("token"));
+                            XMLHttpRequest.upload.addEventListener("progress", function(evt){
+                                if (evt.lengthComputable) {
+                                    var percentComplete = evt.loaded / evt.total;
+                                    //Do something with upload progress
+                                }
+                            }, false);
+                        },
+                        success: function (data) {
+                            console.log(data);
+                            $('#upload-img').attr('src', data.url);
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR);
+
+                        }
+                    });
+                };
+            }) (f);
+
+            reader.readAsDataURL(f);
+        }
+    }*/
+</script>
