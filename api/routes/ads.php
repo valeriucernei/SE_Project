@@ -2,7 +2,7 @@
 /* SWAGGER documentation */
 
 /**
-* @OA\Get(path="/ads", tags={"advertisements"}, description="List all ads from database",
+* @OA\Get(path="/listings", tags={"listings"}, description="List all ads from database",
 *     @OA\Parameter(type="integer", in="query", name="offset", default=0, description="Offset for pagination"),
 *     @OA\Parameter(type="integer", in="query", name="limit", default=15, description="Limit the number of results"),
 *     @OA\Parameter(type="string", in="query", name="search", description="Search string for accounts (Case insensitive search)"),
@@ -24,7 +24,7 @@
 *     @OA\Response(response="200", description="Lists ads from database")
 * )
 */
-Flight::route('GET /ads', function() {
+Flight::route('GET /listings', function() {
     $offset = Flight::query('offset', 0);
     $limit = Flight::query('limit', 10);
     $search = Flight::query('search');
@@ -49,17 +49,17 @@ Flight::route('GET /ads', function() {
 });
 
 /**
-* @OA\Get(path="/ads/{id}", tags={"advertisements"},  description="Query to get ad info by ID",
+* @OA\Get(path="/listings/{id}", tags={"listings"},  description="Query to get ad info by ID",
 *     @OA\Parameter(type="integer", in="path", name="id", default="1", description="Ad ID"),
 *     @OA\Response(response="200", description="Fetched ad info")
 * )
 */
-Flight::route('GET /ads/@id', function($id) {
+Flight::route('GET /listings/@id', function($id) {
     flight::json(Flight::adsservice()->get_ad_by_id($id));
 });
 
 /**
-* @OA\Post(path="/user/ads/add", tags={"x-user", "advertisements"}, description="Query for users to add a new ad", security={{"ApiKeyAuth": {}}},
+* @OA\Post(path="/user/listings/add", tags={"x-user", "listings"}, description="Query for users to add a new ad", security={{"ApiKeyAuth": {}}},
 *   @OA\RequestBody(description="Basic Adv Info", required=true,
 *       @OA\MediaType(mediaType="application/json",
 *    			@OA\Schema(
@@ -79,12 +79,12 @@ Flight::route('GET /ads/@id', function($id) {
 *  @OA\Response(response="200", description="Ad that has been added into database with ID assigned.")
 * )
 */
-Flight::route('POST /user/ads/add', function() {
+Flight::route('POST /user/listings/add', function() {
     Flight::json(Flight::adsservice()->add_ad(Flight::get('user'), Flight::request()->data->getData()));
 });
 
 /**
- * @OA\Put(path="/user/ads/{id}", tags={"x-user", "advertisements"}, description="Query for users to edit one of their ad", security={{"ApiKeyAuth": {}}},
+ * @OA\Put(path="/user/listings/{id}", tags={"x-user", "listings"}, description="Query for users to edit one of their ad", security={{"ApiKeyAuth": {}}},
  *   @OA\Parameter(@OA\Schema(type="integer"), in="path", name="id", default=1),
  *   @OA\RequestBody(description="Advertise info updater.", required=true,
  *       @OA\MediaType(mediaType="application/json",
@@ -105,12 +105,12 @@ Flight::route('POST /user/ads/add', function() {
  *     @OA\Response(response="200", description="Update account based on id")
  * )
  */
-Flight::route('PUT /user/ads/@id', function($id) {
+Flight::route('PUT /user/listings/@id', function($id) {
     Flight::json(Flight::adsservice()->update_user_ad(Flight::get('user')['id'], $id, Flight::request()->data->getData()));
 });
 
 /**
- * @OA\Put(path="/admin/ads/{id}", tags={"x-admin","advertisements"}, description="Query for Admins, to edit any ad in the system", security={{"ApiKeyAuth": {}}},
+ * @OA\Put(path="/admin/listings/{id}", tags={"x-admin","listings"}, description="Query for Admins, to edit any ad in the system", security={{"ApiKeyAuth": {}}},
  *   @OA\Parameter(@OA\Schema(type="integer"), in="path", name="id", default=1),
  *   @OA\RequestBody(description="Advertise info updater.", required=true,
  *       @OA\MediaType(mediaType="application/json",
@@ -131,26 +131,26 @@ Flight::route('PUT /user/ads/@id', function($id) {
  *     @OA\Response(response="200", description="Update account based on id")
  * )
  */
-Flight::route('PUT /admin/ads/@id', function($id) {
+Flight::route('PUT /admin/listings/@id', function($id) {
     Flight::json(Flight::adsservice()->update_ad($id, Flight::request()->data->getData()));
 });
 
 /**
-* @OA\Get(path="/user/ads/verify/{ad_id}", tags={"x-user", "advertisements"}, security={{"ApiKeyAuth":{}}},
+* @OA\Get(path="/user/listings/verify/{ad_id}", tags={"x-user", "listings"}, security={{"ApiKeyAuth":{}}},
 *     @OA\Parameter(@OA\Schema(type="integer"), in="path", type="integer", name="ad_id", example=1, deion="ID of the ad"),
 *     @OA\Response(response="200", deion="Fetch individual advertisement")
 * )
 */
-Flight::route('GET /user/ads/verify/@ad_id', function($ad_id) {
+Flight::route('GET /user/listings/verify/@ad_id', function($ad_id) {
     Flight::json(Flight::adsservice()->verify_ad_user(Flight::get('user')['id'], $ad_id));
 });
 
 /**
-* @OA\Get(path="/user/ads/delete/{ad_id}", tags={"x-user", "advertisements"}, security={{"ApiKeyAuth":{}}},
+* @OA\Get(path="/user/listings/delete/{ad_id}", tags={"x-user", "listings"}, security={{"ApiKeyAuth":{}}},
 *     @OA\Parameter(@OA\Schema(type="integer"), in="path", type="integer", name="ad_id", example=1, deion="ID of the ad"),
 *     @OA\Response(response="200", deion="Success! Ad deleted.")
 * )
 */
-Flight::route('GET /user/ads/delete/@ad_id', function($ad_id) {
+Flight::route('GET /user/listings/delete/@ad_id', function($ad_id) {
     Flight::json(Flight::adsservice()->delete_ad(Flight::get('user')['id'], $ad_id));
 });
