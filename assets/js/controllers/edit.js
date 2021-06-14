@@ -5,7 +5,7 @@ class Edit {
             Search.loadBrands();
             New.load_components();
             Edit.load_form();
-            
+
             $("#editad-description").keyup(function() {
                 $("#newad-count").text($(this).val().length + " / 1000");
             });
@@ -21,7 +21,7 @@ class Edit {
             return 0;
         }
 
-        RestClient.get("api/ads/" + urlParams.get('id'), function(data) {
+        RestClient.get("api/listings/" + urlParams.get('id'), function(data) {
             CMUtils.insertData("#editListingForm", data);
             Search.loadModels(data.brand, data.model);
             $('.js-change').trigger('change');
@@ -38,7 +38,7 @@ class Edit {
         console.log(updated_data);
         $(".form-select,.form-control,#newEditButton").prop("disabled", true);
 
-        RestClient.put("api/user/ads/" + urlParams.get('id'), updated_data, function(data) {
+        RestClient.put("api/user/listings/" + urlParams.get('id'), updated_data, function(data) {
             $(".form-select,.form-control,#newEditButton").prop("disabled", false);
             location.replace("?id=" + urlParams.get('id') + "#view");
         });

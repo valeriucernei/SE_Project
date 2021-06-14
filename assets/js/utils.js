@@ -1,7 +1,7 @@
 class CMUtils{
 
     static get CDN_path() {
-        return "https://cdn.car-market.live.fra1.cdn.digitaloceanspaces.com/";
+        return "https://cdn.car-market.live/";
     }
 
     static getUrl() {

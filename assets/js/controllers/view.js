@@ -7,7 +7,7 @@ class View {
             View.load_listing();
 
             if(localStorage.getItem("token")) {
-                RestClient.get('api/user/ads/verify/' + urlParams.get('id'), function(data) {
+                RestClient.get('api/user/listings/verify/' + urlParams.get('id'), function(data) {
                     $('.ad-owner').show();
                 });
             }
@@ -20,7 +20,7 @@ class View {
     static load_listing() {
         var urlParams = new URLSearchParams(window.location.search);
 
-        RestClient.get("api/ads/" + urlParams.get('id'), function(data) {
+        RestClient.get("api/listings/" + urlParams.get('id'), function(data) {
             $(".car-attributes-short,.car-attributes").html("");
             $(".js-ad-view").show();
             $(".car-title").html(data.title);
@@ -168,7 +168,7 @@ class View {
         var urlParams = new URLSearchParams(window.location.search);
 
         if(urlParams.has('id')) {
-            RestClient.get("api/user/ads/delete/" + urlParams.get('id'), function(data) {
+            RestClient.get("api/user/listings/delete/" + urlParams.get('id'), function(data) {
                 console.log(data.message);
                 location.replace("?#main");
             });

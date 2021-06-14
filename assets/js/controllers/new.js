@@ -19,7 +19,7 @@ class New {
 
         $(".form-select,.form-control,#newAdButton").prop("disabled", true);
 
-        RestClient.post("api/user/ads/add/", carInfo, function(data) {
+        RestClient.post("api/user/listings/add/", carInfo, function(data) {
             New.uploadImages(data.id);
         }, function(error) {
             $(".form-select,.form-control").prop("disabled", false);

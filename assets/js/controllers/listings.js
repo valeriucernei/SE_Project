@@ -15,7 +15,7 @@ class Listings {
         searchData.order = $(".js-sort").val();
         console.log(searchData);
 
-        RestClient.get("api/ads?" + CMUtils.encodeQueryData(searchData), function(data) {
+        RestClient.get("api/listings?" + CMUtils.encodeQueryData(searchData), function(data) {
             Listings.show_cards(data);
             Listings.show_pagination(searchData, page);
 
@@ -89,7 +89,7 @@ class Listings {
     }
 
     static show_publications(searchData, selector){
-        RestClient.get("api/ads?" + CMUtils.encodeQueryData(searchData),
+        RestClient.get("api/listings?" + CMUtils.encodeQueryData(searchData),
         function(data){
             $(selector).html("");
 
@@ -102,7 +102,7 @@ class Listings {
     static show_pagination(searchData, page) {
         searchData.limit = 1000; searchData.offset = 0;
 
-        RestClient.get("api/ads?" + CMUtils.encodeQueryData(searchData), function(data) {
+        RestClient.get("api/listings?" + CMUtils.encodeQueryData(searchData), function(data) {
             var total = data.length;
             var pages = Math.ceil(total / 12);
             $(".mypagination").html("");
